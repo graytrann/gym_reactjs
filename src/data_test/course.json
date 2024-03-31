@@ -1,0 +1,55 @@
+{
+  "message": "Xử lý thành công",
+  "content": [
+    {
+      "ID": 1,
+      "NameCourse": "Calisthenics",
+      "Price": 400,
+      "Description": "asdasdasdasdasdasdasdasdasdasd",
+      "Goal": "Thi đấu"
+    },
+    {
+      "ID": 2,
+      "NameCourse": "Boxing",
+      "Price": 450,
+      "Description": "asdasdasdasd",
+      "Goal": "Thi đấu"
+    },
+    {
+      "ID": 3,
+      "NameCourse": "Powerlifting",
+      "Price": 500,
+      "Description": null,
+      "Goal": "Giảm cân"
+    },
+    {
+      "ID": 4,
+      "NameCourse": "Weightlifting",
+      "Price": 800,
+      "Description": null,
+      "Goal": "Giảm cân"
+    },
+    {
+      "ID": 5,
+      "NameCourse": "Bình Thường",
+      "Price": 350,
+      "Description": null,
+      "Goal": "Duy trì sức khỏe"
+    },
+    {
+      "ID": 7,
+      "NameCourse": "MMA",
+      "Price": 800,
+      "Description": null,
+      "Goal": "Thi đấu"
+    },
+    {
+      "ID": 8,
+      "NameCourse": "Muay Thái",
+      "Price": 400,
+      "Description": null,
+      "Goal": "Thi đấu"
+    }
+  ],
+  "date": "2024-03-31T08:59:28.697Z"
+}

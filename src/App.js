@@ -1,14 +1,21 @@
+import "./App.css";
+import CourseDetail from "./Views/components/Course/CourseDetail";
+import Courses from "./Views/components/Course/Courses";
 
-import './App.css';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
+import Footer from "./Views/components/Footer/Footer";
+import Header from "./Views/components/Header/Header";
+import SignIn from "./Views/models/Auth/SignIn";
+import SignUp from "./Views/models/Auth/SignUp";
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Footer/>
- 
+      <Header />
+      <SignUp />
+      <SignIn />
+      <Courses />
+      <CourseDetail />
+      <Footer />
     </div>
   );
 }

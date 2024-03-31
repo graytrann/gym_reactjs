@@ -1,0 +1,11 @@
+{
+  "message": "Xử lý thành công",
+  "content": {
+    "ID": 5,
+    "NameCourse": "Bình Thường",
+    "Price": 350,
+    "Description": null,
+    "Goal": "Duy trì sức khỏe"
+  },
+  "date": "2024-03-31T08:59:46.464Z"
+}
