@@ -13,13 +13,7 @@ class Course {
     try {
       const coursesData = await getAllCourse(); // Gọi hàm getAllCourse để lấy danh sách các khóa học
       const courses = coursesData.map(
-        (course) =>
-          new Course(
-            course.NameCourse,
-            course.Price,
-            course.Description,
-            course.Goal
-          )
+        (course) => new Course(course.NameCourse, course.Price, course.Description, course.Goal)
       );
       return courses;
     } catch (error) {
