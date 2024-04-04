@@ -2,7 +2,6 @@ import React from "react";
 import Carousel from "../components/Carousel";
 
 import Courses from "../components/Course/Courses";
-import CoursesDetail from "../components/CourseDetail/CoursesDetail";
 
 export default function Home() {
   const gymuser = localStorage.getItem("gymUser");
@@ -17,7 +16,7 @@ export default function Home() {
     <div>
       <Carousel />
       <Courses />
-      <CoursesDetail />
+      {/* <CoursesDetail /> */}
     </div>
   );
 }

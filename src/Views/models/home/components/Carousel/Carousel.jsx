@@ -14,37 +14,39 @@ function ImageCarousel() {
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <div style={{ position: "relative", width: "100%", height: "650px" }}>
-          <Slider {...settings}>
-            <div className="carousel">
-              <img width="100%" height="650" src="./carousel.jpg" alt="Image 1" />
-            </div>
+    <div className="carousel ">
+      <img
+        src="https://citigym.com.vn/storage/uploads/citigym-ntmk/banner-web-01-1905x834.jpg"
+        alt="Image 2"
+      />
+    </div>
+    // <Grid container spacing={2}>
+    //   <Grid item xs={12}>
+    //     <div className="relative w-full h-40">
+    //       <Slider {...settings}>
+    //         <div className="carousel h-960">
+    //           <img src="./carousel.jpg" alt="Image 1" />
+    //         </div>
 
-            <div className="carousel">
-              <img
-                width="100%"
-                height="650"
-                src="https://citigym.com.vn/storage/uploads/citigym-ntmk/banner-web-01-1905x834.jpg"
-                alt="Image 2"
-              />
-            </div>
+    //         <div className="carousel h-960">
+    //           <img
+    //             src="https://citigym.com.vn/storage/uploads/citigym-ntmk/banner-web-01-1905x834.jpg"
+    //             alt="Image 2"
+    //           />
+    //         </div>
 
-            <div className="carousel">
-              <img
-                width="100%"
-                height="650"
-                src="https://ptfitness.vn/wp-content/uploads/2022/06/thiet-ke-phong-gym-chuyen-nghiep.jpg"
-                alt="Image 3"
-              />
-            </div>
+    //         {/* <div className="carousel w-full h-650">
+    //           <img
+    //             src="https://ptfitness.vn/wp-content/uploads/2022/06/thiet-ke-phong-gym-chuyen-nghiep.jpg"
+    //             alt="Image 3"
+    //           />
+    //         </div> */}
 
-            {/* Add more images as needed */}
-          </Slider>
-        </div>
-      </Grid>
-    </Grid>
+    //         {/* Add more images as needed */}
+    //       </Slider>
+    //     </div>
+    //   </Grid>
+    // </Grid>
   );
 }
 

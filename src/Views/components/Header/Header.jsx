@@ -12,8 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-
-const pages = ["CLB", "Lịch học", "Khuyến mãi"];
+import { IoFitness } from "react-icons/io5";
+const pages = ["TRANG CHỦ", "KHÓA TẬP", "KHUYẾN MÃI", "VỀ CHÚNG TÔI"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -36,22 +36,31 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar color="default" position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <IoFitness
+            sx={{
+              fontWeight: "bold",
+              color: "blue",
+              fontSize: "25px",
+              display: { xs: "none", md: "flex" },
+              marginRight: 1,
+            }}
+          /> */}
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
-              fontWeight: 700,
+              fontWeight: "bold",
+              fontSize: "25px",
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "blue",
               textDecoration: "none",
             }}
           >
@@ -94,7 +103,7 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
@@ -105,20 +114,27 @@ function ResponsiveAppBar() {
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
-              fontWeight: 700,
+              fontSize: "25px",
+              fontWeight: "bold",
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "blue",
               textDecoration: "none",
             }}
           >
-            LOGO
+            CITYGYM
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex", justifyContent: "center" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "black",
+                  display: "block",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                }}
               >
                 {page}
               </Button>

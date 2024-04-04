@@ -20,4 +20,20 @@ export const getCourseById = async (id) => {
   }
 };
 
+export const getDesCourse = async () => {
+  try {
+    const response = await fetcher.get("course/get-course-des");
+    return response.data?.content;
+  } catch (error) {
+    throw error.response.data?.content;
+  }
+};
 
+export const getAscCourse = async () => {
+  try {
+    const response = await fetcher.get("course/get-course-asc");
+    return response.data?.content;
+  } catch (error) {
+    throw error.response.data?.content;
+  }
+};

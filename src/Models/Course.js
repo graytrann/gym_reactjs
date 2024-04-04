@@ -1,4 +1,4 @@
-import { getAllCourse, getCourseById } from "../Controllers/course.js";
+import { getAllCourse, getAscCourse, getCourseById, getDesCourse } from "../Controllers/course.js";
 
 class Course {
   constructor(NameCourse, Price, Description, Goal) {
@@ -30,6 +30,32 @@ class Course {
     } catch (error) {
       console.error("Failed to fetch course by id:", error);
       return null; // Trả về null trong trường hợp có lỗi xảy ra
+    }
+  }
+
+  static async getDesCourse() {
+    try {
+      // Truy vấn tất cả các khóa học và sắp xếp theo giá giảm dần
+      const courses = await getDesCourse({
+        order: [["Price", "DESC"]],
+      });
+
+      return courses;
+    } catch (error) {
+      throw new Error("Lỗi..");
+    }
+  }
+
+  static async getAscCourse() {
+    try {
+      // Truy vấn tất cả các khóa học và sắp xếp theo giá tăng dần
+      const courses = getAscCourse({
+        order: [["Price", "ASC"]],
+      });
+
+      return courses;
+    } catch (error) {
+      throw new Error("Lỗi..");
     }
   }
 }
