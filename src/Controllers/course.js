@@ -38,9 +38,9 @@ export const getAscCourse = async () => {
   }
 };
 
-export const suggestCourse = async () => {
+export const suggestCourse = async (payload) => {
   try {
-    const responese = await fetcher.post("course/suggest-course");
+    const response = await fetcher.post("course/suggest-course", payload);
     return response.data?.content;
   } catch (error) {
     throw error.response.data?.content;

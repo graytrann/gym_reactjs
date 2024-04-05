@@ -1,4 +1,4 @@
-import { getAllCourse, getAscCourse, getCourseById, getDesCourse } from "../Controllers/course.js";
+import { getAllCourse, getAscCourse, getCourseById, getDesCourse,suggestCourse } from "../Controllers/course.js";
 
 class Course {
   constructor(ID, NameCourse, Price, Description, Goal, Image) {
@@ -69,14 +69,28 @@ class Course {
     }
   }
 
-  //   static async suggestCourse(req, res) {
-  //     const height = parseFloat(req.body.height);
-  //     const weight = parseFloat(req.body.weight);
-  //     const goal = req.body.goal;
-  //     try {
+  static async suggestCoures(info) {
+    // Đánh dấu phương thức là static
 
-  //     }
-  //   }
+    try {
+      const coursesData = await suggestCourse(info); // Gọi hàm getAllCourse để lấy danh sách các khóa học
+      const courses = coursesData.map(
+        (course) =>
+          new Course(
+            course.ID,
+            course.NameCourse,
+            course.Price,
+            course.Description,
+            course.Goal,
+            course.Image
+          )
+      );
+      return courses;
+    } catch (error) {
+      console.error("Failed to fetch courses:", error);
+      return []; // Trả về một mảng rỗng trong trường hợp có lỗi xảy ra
+    }
+  }
 }
 
 export default Course;
