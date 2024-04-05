@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "../components/Carousel";
 
 import Courses from "../components/Course/Courses";
+import Suggest from "../components/Suggest/Suggest";
 
 export default function Home() {
   const gymuser = localStorage.getItem("gymUser");
@@ -16,7 +17,7 @@ export default function Home() {
     <div>
       <Carousel />
       <Courses />
-      {/* <CoursesDetail /> */}
+      <Suggest />
     </div>
   );
 }

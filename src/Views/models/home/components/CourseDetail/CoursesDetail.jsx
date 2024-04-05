@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from "react";
-import {
-  CaretRightOutlined,
-  FileExcelOutlined,
-  InfoCircleOutlined,
-  SafetyCertificateOutlined,
-  WechatOutlined,
-} from "@ant-design/icons";
+import { WechatOutlined } from "@ant-design/icons";
 import { PiStarThin } from "react-icons/pi";
 import { FaBook, FaCheck, FaClock, FaLayerGroup, FaUserGraduate } from "react-icons/fa";
 import { IoPlayCircle } from "react-icons/io5";
 import { FcAlarmClock, FcGraduationCap } from "react-icons/fc";
 import { FaBoltLightning, FaPhotoFilm } from "react-icons/fa6";
 import { Divider } from "@mui/material";
-import { getCourseById } from "../../../../../Controllers/course";
+
 import { useParams } from "react-router-dom";
+import Course from "../../../../../Models/Course";
 export default function CoursesDetail() {
   const [courseDetail, setCourseDetail] = useState(null);
   const { id } = useParams();
   useEffect(() => {
     async function fetchData() {
       try {
-        const coursesData = await getCourseById(id);
+        const coursesData = await Course.getById(id);
         setCourseDetail(coursesData);
       } catch (error) {
         console.error("Failed to fetch courses:", error);

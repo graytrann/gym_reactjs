@@ -37,3 +37,12 @@ export const getAscCourse = async () => {
     throw error.response.data?.content;
   }
 };
+
+export const suggestCourse = async () => {
+  try {
+    const responese = await fetcher.post("course/suggest-course");
+    return response.data?.content;
+  } catch (error) {
+    throw error.response.data?.content;
+  }
+};

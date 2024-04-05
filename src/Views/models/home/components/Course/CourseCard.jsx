@@ -2,21 +2,16 @@ import React from "react";
 import { Divider } from "@mui/material";
 
 import { FcAlarmClock } from "react-icons/fc";
-import { IoEyeSharp } from "react-icons/io5";
-import { BellOutlined } from "@ant-design/icons";
+import { LuDollarSign } from "react-icons/lu";
+import { GoGoal } from "react-icons/go";
 import { NavLink } from "react-router-dom";
 const CourseCard = ({ courses }) => {
+  console.log(courses);
   return (
     <>
       {courses.map((course, index) => (
-        <div
-          key={index}
-          className="duration-300 shadow-md hover:shadow-xl group"
-        >
-          <NavLink
-            to={`course/get-course/${course.ID}`}
-            activeClassName="active"
-          >
+        <div key={index} className="duration-300 shadow-md hover:shadow-xl group">
+          <NavLink to={`course/get-course/${course.ID}`} activeClassName="active">
             <div className="relative">
               <div className="overflow-hidden">
                 <img
@@ -40,7 +35,7 @@ const CourseCard = ({ courses }) => {
                 </p>
                 <p></p>
                 <p>
-                  <IoEyeSharp className="text-blue-500 me-2" />
+                  <GoGoal className="text-blue-500 me-2" />
                   <>{course.Goal}</>
                 </p>
               </div>
@@ -48,18 +43,12 @@ const CourseCard = ({ courses }) => {
             <Divider className="m-0" />
             <div className="flex flex-wrap items-center justify-between px-5 py-3">
               <div className="flex items-center">
-                <img
-                  src="./home_carousel_03.jpg"
-                  alt="User"
-                  className="object-cover w-10 me-2"
-                />
-                <span className="text-xs text-gray-500 sm:text-base">
-                  TrUnG
-                </span>
+                <img src="./home_carousel_03.jpg" alt="User" className="object-cover w-10 me-2" />
+                <span className="text-xs text-gray-500 sm:text-base">TrUnG</span>
               </div>
               <div className="text-right">
                 <div className="flex items-center">
-                  <BellOutlined
+                  <LuDollarSign
                     id="sale-off"
                     className="text-[#e55039] sm:text-base me-1 text-sm"
                   />

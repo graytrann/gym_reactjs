@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import CourseCard from "./CourseCard";
 import { Container } from "@mui/material";
 import { CaretRightOutlined } from "@ant-design/icons";
-import {
-  getAllCourse,
-  getAscCourse,
-  getDesCourse,
-} from "../../../../../Controllers/course";
+import { getAllCourse, getAscCourse, getDesCourse } from "../../../../../Controllers/course";
+import Course from "../../../../../Models/Course";
 export default function Courses() {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     async function fetchData() {
       try {
-        const coursesData = await getAllCourse();
+        const coursesData = await Course.getAll();
         setCourses(coursesData);
       } catch (error) {
         console.error("Failed to fetch courses:", error);
@@ -24,7 +21,7 @@ export default function Courses() {
 
   const fetchDesCourse = async () => {
     try {
-      const data = await getDesCourse();
+      const data = await Course.getDesCourse();
       setCourses(data);
     } catch (error) {
       console.error("Failed to fetch courses:", error);
@@ -32,7 +29,7 @@ export default function Courses() {
   };
   const fetchAscCourse = async () => {
     try {
-      const data = await getAscCourse();
+      const data = await Course.getAscCourse();
       setCourses(data);
     } catch (error) {
       console.error("Failed to fetch courses:", error);
@@ -42,9 +39,7 @@ export default function Courses() {
     <>
       <div className="py-10 text-white bg-orange-400">
         <div className="px-4 mx-auto max-w-screen-2xl">
-          <h1 className="mr-[81%] text-4xl font-bold uppercase sm:text-5xl">
-            KHÓA HỌC
-          </h1>
+          <h1 className="mr-[81%] text-4xl font-bold uppercase sm:text-5xl">KHÓA HỌC</h1>
           <p className="flex items-center text-black sm:text-lg">
             <CaretRightOutlined className="me-1 animate-pulse" />
             Bắt đầu hành trình nào!
