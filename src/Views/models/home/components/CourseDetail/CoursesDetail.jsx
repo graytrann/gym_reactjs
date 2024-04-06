@@ -6,12 +6,21 @@ import { IoPlayCircle } from "react-icons/io5";
 import { FcAlarmClock, FcGraduationCap } from "react-icons/fc";
 import { FaBoltLightning, FaPhotoFilm } from "react-icons/fa6";
 import { Divider } from "@mui/material";
-
+import Modal from "react-modal";
 import { useParams } from "react-router-dom";
 import Course from "../../../../../Models/Course";
 export default function CoursesDetail() {
   const [courseDetail, setCourseDetail] = useState(null);
   const { id } = useParams();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   useEffect(() => {
     async function fetchData() {
       try {
@@ -251,10 +260,35 @@ export default function CoursesDetail() {
               </p>
               <button
                 className="w-full py-2 duration-300 border-[1px] border-teal-500 text-teal-500 hover:text-white hover:bg-teal-500 hover:scale-95"
-                // onClick={enrollCourse}
+                onClick={openModal}
               >
-                ĐĂNG KÝ
+                Thanh toán
               </button>
+              <div className="flex justify-between">
+                <Modal
+                  isOpen={modalIsOpen}
+                  onRequestClose={closeModal}
+                  contentLabel="Payment Modal"
+                >
+                  <h2>Chọn phương thức thanh toán</h2>
+                  <div>
+                    <button className="px-10 py-3 mt-10 text-sm font-semibold text-white uppercase rounded-full bg-teal-500 hover:bg-[#36867b] duration-300 hover:scale-90 shadow-lg sm:mb-0 mb-5">
+                      Tiền mặt
+                    </button>
+                  </div>
+                  <div>
+                    <button className="px-10 py-3 mt-10 text-sm font-semibold text-white uppercase rounded-full bg-teal-500 hover:bg-[#36867b] duration-300 hover:scale-90 shadow-lg sm:mb-0 mb-5">
+                      Bank
+                    </button>
+                  </div>
+                  <button
+                    className="px-10 py-3 mt-10 text-sm font-semibold text-white uppercase rounded-full bg-red-500 hover:bg-red duration-300 hover:scale-90 shadow-lg sm:mb-0 mb-5"
+                    onClick={closeModal}
+                  >
+                    Đóng
+                  </button>
+                </Modal>
+              </div>
               <div className="flex items-center justify-between py-5 border-b-[1px] border-gray-200">
                 <p className="text-gray-500">
                   Ghi danh: <span className="font-medium text-black">9999 học viên</span>

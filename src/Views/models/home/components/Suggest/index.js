@@ -1,1 +1,1 @@
-export { deafult } from "./Suggest.jsx";
+export { default } from "./Suggest";

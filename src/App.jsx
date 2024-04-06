@@ -6,6 +6,7 @@ import MainLayout from "./templates/MainLayout/MainLayout";
 import Home from "./Views/models/home/page/Home";
 import CoursesDetail from "./Views/models/home/components/CourseDetail/CoursesDetail";
 import Courses from "./Views/models/home/components/Course/Courses";
+import Suggest from "./Views/models/home/components/Suggest/Suggest";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
             <Route path="/course" element={<Courses />} />
             {/* {/* <Route path="/category/:maDanhMuc" element={<Category />} /> */}
             <Route path="course/get-course/:id" element={<CoursesDetail />} />
+            <Route path="/suggest" element={<Suggest />} />
+            <Route path="/course/get-course/:id" element={<Suggest />} />
           </Route>
           <Route path="/login" element={<SignIn />} />
 
