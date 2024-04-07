@@ -16,6 +16,7 @@ import Modal from "react-modal";
 import { useParams } from "react-router-dom";
 import Course from "../../../../../Models/Course";
 import Purchase from "../../../../../Models/Purchase";
+import Paypal from "../Paypal/Paypal";
 export default function CoursesDetail() {
   const [courseDetail, setCourseDetail] = useState(null);
   const { id } = useParams();
@@ -41,6 +42,8 @@ export default function CoursesDetail() {
     fetchData();
   }, [id]);
 
+  
+
   const handlePurchase = async (event) => {
     event.preventDefault();
 
@@ -50,7 +53,7 @@ export default function CoursesDetail() {
       "GIAMGIA",
       courseDetail.Price,
       parseInt(id),
-      true
+      false
     );
 
     try {
@@ -318,9 +321,10 @@ export default function CoursesDetail() {
                     </button>
                   </div>
                   <div>
-                    <button className="px-10 py-3 mt-10 text-sm font-semibold text-white uppercase rounded-full bg-teal-500 hover:bg-[#36867b] duration-300 hover:scale-90 shadow-lg sm:mb-0 mb-5">
+                    {/* <button className="px-10 py-3 mt-10 text-sm font-semibold text-white uppercase rounded-full bg-teal-500 hover:bg-[#36867b] duration-300 hover:scale-90 shadow-lg sm:mb-0 mb-5">
                       Bank
-                    </button>
+                    </button> */}
+                    <Paypal course={courseDetail} id={id}/>
                   </div>
                   <button
                     className="px-10 py-3 mt-10 text-sm font-semibold text-white uppercase rounded-full bg-red-500 hover:bg-red duration-300 hover:scale-90 shadow-lg sm:mb-0 mb-5"
