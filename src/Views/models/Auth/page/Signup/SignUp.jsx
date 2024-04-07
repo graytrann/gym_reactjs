@@ -14,19 +14,7 @@ export default function SignUp() {
   const navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
-    switch (name) {
-      case "fullName":
-        setFullName(value);
-        break;
-      case "phone":
-        setPhone(value);
-        break;
-      case "password":
-        setPassword(value);
-        break;
-      default:
-        break;
-    }
+    formik.setFieldValue(name, value); // Cập nhật giá trị của formik
   };
 
   const formik = useFormik({
@@ -56,13 +44,17 @@ export default function SignUp() {
 
   const handleSignUp = async (event) => {
     event.preventDefault();
+    console.log(formik.values);
+    const { fullName, phone, password } = formik.values; // Bóc tách phone và password từ formik.values
+
     const user = new User(fullName, phone, password, 1);
     try {
       await user.signUp(); // Gọi phương thức signUp từ class User
       console.log("Sign up successful!");
       navigate("/login");
     } catch (error) {
-      console.error("Sign up failed:", error);
+      alert(error.response.data?.error.message);
+      console.error("Đăng ký thất bại:", error.response.data?.error.message);
     }
   };
 
@@ -91,6 +83,7 @@ export default function SignUp() {
               <h1 className="mb-12 text-4xl font-semibold">Đăng kí</h1>
               <FormInput
                 id="fullName"
+                name="fullName"
                 type="text"
                 placeholder="Nhập họ và tên"
                 formik={formik}
@@ -101,6 +94,7 @@ export default function SignUp() {
               />
               <FormInput
                 id="phone"
+                name="phone"
                 type="text"
                 placeholder="Nhập số điện thoại"
                 formik={formik}
@@ -111,6 +105,7 @@ export default function SignUp() {
               />
               <FormInput
                 id="password"
+                name="password"
                 type="password"
                 placeholder="Nhập số password"
                 formik={formik}

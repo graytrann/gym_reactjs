@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { WechatOutlined } from "@ant-design/icons";
 import { PiStarThin } from "react-icons/pi";
-import { FaBook, FaCheck, FaClock, FaLayerGroup, FaUserGraduate } from "react-icons/fa";
+import {
+  FaBook,
+  FaCheck,
+  FaClock,
+  FaLayerGroup,
+  FaUserGraduate,
+} from "react-icons/fa";
 import { IoPlayCircle } from "react-icons/io5";
 import { FcAlarmClock, FcGraduationCap } from "react-icons/fc";
 import { FaBoltLightning, FaPhotoFilm } from "react-icons/fa6";
@@ -9,6 +15,7 @@ import { Divider } from "@mui/material";
 import Modal from "react-modal";
 import { useParams } from "react-router-dom";
 import Course from "../../../../../Models/Course";
+import Purchase from "../../../../../Models/Purchase";
 export default function CoursesDetail() {
   const [courseDetail, setCourseDetail] = useState(null);
   const { id } = useParams();
@@ -33,6 +40,26 @@ export default function CoursesDetail() {
 
     fetchData();
   }, [id]);
+
+  const handlePurchase = async (event) => {
+    event.preventDefault();
+
+    const newPurchase = new Purchase(
+      Date.now(),
+      1,
+      "GIAMGIA",
+      courseDetail.Price,
+      parseInt(id),
+      true
+    );
+
+    try {
+      await newPurchase.purchase();
+      console.log("Đăng ký khóa học thành công");
+    } catch (error) {
+      console.error("Đăng ký khóa học thất bại:");
+    }
+  };
 
   return (
     <div id="user_detail">
@@ -73,7 +100,9 @@ export default function CoursesDetail() {
                     <PiStarThin className="text-yellow-500" />
                     <span className="font-medium ms-2">4.9</span>
                   </div>
-                  <p className="text-sm text-gray-400 sm:text-right">100 đánh giá</p>
+                  <p className="text-sm text-gray-400 sm:text-right">
+                    100 đánh giá
+                  </p>
                 </div>
               </div>
             </div>
@@ -147,7 +176,9 @@ export default function CoursesDetail() {
                 <div className="flex items-center justify-between py-3 px-2 border-b-[1px] border-orange-400/50 duration-300 hover:shadow-lg">
                   <div className="flex items-center">
                     <IoPlayCircle className="text-teal-500 me-2" />
-                    <p className="line-clamp-1">Thức ăn nào giúp các nhóm cơ phát triển</p>
+                    <p className="line-clamp-1">
+                      Thức ăn nào giúp các nhóm cơ phát triển
+                    </p>
                   </div>
                   <div className="flex items-center justify-end flex-grow">
                     <FcAlarmClock className="me-2" />
@@ -158,7 +189,9 @@ export default function CoursesDetail() {
                 <div className="flex items-center justify-between py-3 px-2 border-b-[1px] border-orange-400/50 duration-300 hover:shadow-lg">
                   <div className="flex items-center">
                     <IoPlayCircle className="text-teal-500 me-2" />
-                    <p className="line-clamp-1">Tập bao nhiêu tháng để có cơ thể cường tráng</p>
+                    <p className="line-clamp-1">
+                      Tập bao nhiêu tháng để có cơ thể cường tráng
+                    </p>
                   </div>
                   <div className="flex items-center justify-end flex-grow">
                     <FcAlarmClock className="me-2" />
@@ -191,7 +224,9 @@ export default function CoursesDetail() {
                 <div className="flex items-center justify-between py-3 px-2 border-b-[1px] border-orange-400/50 duration-300 hover:shadow-lg">
                   <div className="flex items-center">
                     <IoPlayCircle className="text-teal-500 me-2" />
-                    <p className="line-clamp-1">Những vật dụng cần thiết khi tập gym</p>
+                    <p className="line-clamp-1">
+                      Những vật dụng cần thiết khi tập gym
+                    </p>
                   </div>
                   <div className="flex items-center justify-end flex-grow">
                     <FcAlarmClock className="me-2" />
@@ -222,7 +257,10 @@ export default function CoursesDetail() {
                 <div className="flex items-center justify-between py-3 px-2 border-b-[1px] border-orange-400/50 duration-300 hover:shadow-lg">
                   <div className="flex items-center">
                     <IoPlayCircle className="text-teal-500 me-2" />
-                    <p className="line-clamp-1"> Kết hợp giữa đùi trước và bắp chân</p>
+                    <p className="line-clamp-1">
+                      {" "}
+                      Kết hợp giữa đùi trước và bắp chân
+                    </p>
                   </div>
                   <div className="flex items-center justify-end flex-grow">
                     <FcAlarmClock className="me-2" />
@@ -272,7 +310,10 @@ export default function CoursesDetail() {
                 >
                   <h2>Chọn phương thức thanh toán</h2>
                   <div>
-                    <button className="px-10 py-3 mt-10 text-sm font-semibold text-white uppercase rounded-full bg-teal-500 hover:bg-[#36867b] duration-300 hover:scale-90 shadow-lg sm:mb-0 mb-5">
+                    <button
+                      onClick={handlePurchase}
+                      className="px-10 py-3 mt-10 text-sm font-semibold text-white uppercase rounded-full bg-teal-500 hover:bg-[#36867b] duration-300 hover:scale-90 shadow-lg sm:mb-0 mb-5"
+                    >
                       Tiền mặt
                     </button>
                   </div>
@@ -291,19 +332,22 @@ export default function CoursesDetail() {
               </div>
               <div className="flex items-center justify-between py-5 border-b-[1px] border-gray-200">
                 <p className="text-gray-500">
-                  Ghi danh: <span className="font-medium text-black">9999 học viên</span>
+                  Ghi danh:{" "}
+                  <span className="font-medium text-black">9999 học viên</span>
                 </p>
                 <FaUserGraduate className="text-orange-400" />
               </div>
               <div className="flex items-center justify-between py-5 border-b-[1px] border-gray-200">
                 <p className="text-gray-500">
-                  Thời gian: <span className="font-medium text-black">5 giờ</span>
+                  Thời gian:{" "}
+                  <span className="font-medium text-black">5 giờ</span>
                 </p>
                 <FaClock className="text-orange-400 " />
               </div>
               <div className="flex items-center justify-between py-5 border-b-[1px] border-gray-200">
                 <p className="text-gray-500">
-                  Tổng: <span className="font-medium text-black">10 bài học</span>
+                  Tổng:{" "}
+                  <span className="font-medium text-black">10 bài học</span>
                 </p>
                 <FaBook className="text-orange-400" />
               </div>
@@ -315,7 +359,8 @@ export default function CoursesDetail() {
               </div>
               <div className="flex items-center justify-between py-5 border-b-[1px] border-gray-200">
                 <p className="text-gray-500">
-                  Ngày tập: <span className="font-medium text-black">3 - 7 ngày</span>
+                  Ngày tập:{" "}
+                  <span className="font-medium text-black">3 - 7 ngày</span>
                 </p>
                 <FaLayerGroup className="text-orange-400" />
               </div>

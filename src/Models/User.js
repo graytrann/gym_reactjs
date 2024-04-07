@@ -12,6 +12,7 @@ class User {
     this.Password = Password;
   }
 
+ 
   async signUp() {
     try {
       const payload = {
@@ -27,11 +28,11 @@ class User {
       console.log("Đăng ký thành công:", response);
     } catch (error) {
       // Xử lý lỗi nếu có
-      console.error("Đăng ký thất bại:", error);
+      throw error;
     }
   }
 
-  async signIn() {
+  async signIn(onSuccessCallback) {
     try {
       const payload = {
         phone: this.Phone,
@@ -42,11 +43,12 @@ class User {
       const response = await signin(payload);
 
       // Xử lý response ở đây
-      console.log("Đăng ký thành công:", response);
+      console.log("Đăng nhập thành công:", response);
       localStorage.setItem("gymUser", JSON.stringify(response));
+      onSuccessCallback();
     } catch (error) {
       // Xử lý lỗi nếu có
-      console.error("Đăng ký thất bại:", error);
+      throw error;
     }
   }
 }

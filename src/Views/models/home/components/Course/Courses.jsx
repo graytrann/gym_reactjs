@@ -3,8 +3,12 @@ import CourseCard from "./CourseCard";
 import { Container } from "@mui/material";
 import Course from "../../../../../Models/Course";
 import { FaSortAmountDown, FaSortAmountUpAlt } from "react-icons/fa";
+import styles from "./Mystyle.module.css";
+
 export default function Courses() {
   const [courses, setCourses] = useState([]);
+  const [isAnimating, setIsAnimating] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -20,10 +24,13 @@ export default function Courses() {
 
   const fetchDesCourse = async () => {
     try {
+      setIsAnimating(true); // Bắt đầu animate
       const data = await Course.getDesCourse();
       setCourses(data);
     } catch (error) {
       console.error("Failed to fetch courses:", error);
+    } finally {
+      setIsAnimating(false); // Kết thúc animate
     }
   };
   const fetchAscCourse = async () => {
@@ -34,6 +41,7 @@ export default function Courses() {
       console.error("Failed to fetch courses:", error);
     }
   };
+  console.log(isAnimating);
   return (
     <>
       <Container>
@@ -54,7 +62,10 @@ export default function Courses() {
           </button>
         </div>
         <div className="grid gap-10 px-4 mt-8 mb-8 xl:px-0 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4">
-          <CourseCard courses={courses} />
+          <CourseCard
+            className={isAnimating ? styles["animate"] : ""}
+            courses={courses}
+          />
         </div>
       </Container>
     </>

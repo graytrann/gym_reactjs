@@ -40,25 +40,14 @@ export default function Suggest() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    switch (name) {
-      case "height":
-        setHeight(value);
-        break;
-      case "weight":
-        setWeight(value);
-        break;
-      case "goal": // Thêm trường hợp cho mục tiêu
-        setGoal(value);
-        break;
-      default:
-        break;
-    }
+    formik.setFieldValue(name, value); // Cập nhật giá trị của formik
   };
 
   const handleSuggest = async (event) => {
     event.preventDefault();
 
     try {
+      const { height, weight, goal } = formik.values;
       let data = { height: height, weight: weight, goal: goal };
       let coursesFromAPI = await Course.suggestCoures(data);
       setCourses(coursesFromAPI);

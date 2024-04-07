@@ -35,19 +35,18 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {
+    // Xử lý đăng xuất ở đây
+    localStorage.removeItem("gymUser");
+    window.location.reload(); // Tải lại trang hiện tại
+
+    console.log("Đã đăng xuất!");
+  };
+
   return (
     <AppBar color="default" position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <IoFitness
-            sx={{
-              fontWeight: "bold",
-              color: "blue",
-              fontSize: "25px",
-              display: { xs: "none", md: "flex" },
-              marginRight: 1,
-            }}
-          /> */}
           <Typography
             variant="h6"
             noWrap
@@ -123,7 +122,12 @@ function ResponsiveAppBar() {
           >
             CITYGYM
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex", justifyContent: "center" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex", justifyContent: "center" },
+            }}
+          >
             {pages.map((page) => (
               <Button
                 key={page}
@@ -163,11 +167,18 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              {settings.map((setting) =>
+                // Kiểm tra xem mục hiện tại có phải là "Logout" không
+                setting === "Logout" ? (
+                  <MenuItem key={setting} onClick={handleLogout}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ) : (
+                  <MenuItem key={setting}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                )
+              )}
             </Menu>
           </Box>
         </Toolbar>

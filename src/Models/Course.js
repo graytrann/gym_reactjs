@@ -1,4 +1,10 @@
-import { getAllCourse, getAscCourse, getCourseById, getDesCourse,suggestCourse } from "../Controllers/course.js";
+import {
+  getAllCourse,
+  getAscCourse,
+  getCourseById,
+  getDesCourse,
+  suggestCourse,
+} from "../Controllers/course.js";
 
 class Course {
   constructor(ID, NameCourse, Price, Description, Goal, Image) {

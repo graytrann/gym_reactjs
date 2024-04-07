@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import User from "../../../../../Models/User";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import FormInput from "../../../../components/FormInput/FormInput";
@@ -8,21 +8,15 @@ import { FcHome } from "react-icons/fc";
 import { MdAssignmentInd } from "react-icons/md";
 import background from "./../../../../../Assets/img/carousel.jpg";
 export default function SignIn() {
+  const userIsLoggedIn = localStorage.getItem("gymUser");
+
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-    switch (name) {
-      case "phone":
-        setPhone(value);
-        break;
-      case "password":
-        setPassword(value);
-        break;
-      default:
-        break;
-    }
+    formik.setFieldValue(name, value); // Cập nhật giá trị của formik
   };
 
   const formik = useFormik({
@@ -50,16 +44,25 @@ export default function SignIn() {
 
   const handleSignIn = async (event) => {
     event.preventDefault();
+    console.log(formik.values);
+    const { phone, password } = formik.values; // Bóc tách phone và password từ formik.values
     const user = new User();
     user.constructorForSignIn(phone, password);
     try {
-      await user.signIn(); // Gọi phương thức signIn từ class User
-      console.log("Sign in successful!");
-      navigate("/");
+      await user.signIn(() => {
+        // Hàm callback để xử lý khi đăng nhập thành công
+        console.log("Đăng nhập thành công! Đang chuyển hướng đến trang chủ...");
+        navigate("/"); // Chuyển hướng sang trang chủ
+      }); // Gọi phương thức signIn từ class User
     } catch (error) {
-      console.error("Sign in failed:", error);
+      alert(error.response.data?.error.message);
+      console.error("Đăng nhập thất bại:", error.response.data?.error.message);
     }
   };
+
+  if (userIsLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div
@@ -88,6 +91,7 @@ export default function SignIn() {
               <FormInput
                 id="phone"
                 type="text"
+                name="phone"
                 placeholder="Nhập số điện thoại"
                 formik={formik}
                 errors={formik.errors.phone}
@@ -97,6 +101,7 @@ export default function SignIn() {
               />
               <FormInput
                 id="password"
+                name="password"
                 type="password"
                 placeholder="Nhập số password"
                 formik={formik}
