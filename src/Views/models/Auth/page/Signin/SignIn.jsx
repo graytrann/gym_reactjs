@@ -7,6 +7,8 @@ import FormInput from "../../../../components/FormInput/FormInput";
 import { FcHome } from "react-icons/fc";
 import { MdAssignmentInd } from "react-icons/md";
 import background from "./../../../../../Assets/img/carousel.jpg";
+import Swal from "sweetalert2";
+
 export default function SignIn() {
   const userIsLoggedIn = localStorage.getItem("gymUser");
 
@@ -44,19 +46,26 @@ export default function SignIn() {
 
   const handleSignIn = async (event) => {
     event.preventDefault();
-    console.log(formik.values);
-    const { phone, password } = formik.values; // Bóc tách phone và password từ formik.values
+    const { phone, password } = formik.values;
     const user = new User();
     user.constructorForSignIn(phone, password);
     try {
       await user.signIn(() => {
-        // Hàm callback để xử lý khi đăng nhập thành công
-        console.log("Đăng nhập thành công! Đang chuyển hướng đến trang chủ...");
-        navigate("/"); // Chuyển hướng sang trang chủ
-      }); // Gọi phương thức signIn từ class User
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Đăng nhập thành công",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      });
     } catch (error) {
-      alert(error.response.data?.error.message);
-      console.error("Đăng nhập thất bại:", error.response.data?.error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error.response.data?.error.message}`,
+      });
     }
   };
 

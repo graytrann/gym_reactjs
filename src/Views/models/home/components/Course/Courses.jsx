@@ -41,7 +41,6 @@ export default function Courses() {
       console.error("Failed to fetch courses:", error);
     }
   };
-  console.log(isAnimating);
   return (
     <>
       <Container>
@@ -62,10 +61,7 @@ export default function Courses() {
           </button>
         </div>
         <div className="grid gap-10 px-4 mt-8 mb-8 xl:px-0 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4">
-          <CourseCard
-            className={isAnimating ? styles["animate"] : ""}
-            courses={courses}
-          />
+          <CourseCard className={isAnimating ? styles["animate"] : ""} courses={courses} />
         </div>
       </Container>
     </>

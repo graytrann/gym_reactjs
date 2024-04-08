@@ -9,7 +9,6 @@ export default function Home() {
   const currentuser = gymuser;
 
   // Kiểm tra giá trị của currentuser
-  console.log("Giá trị của currentuser:", currentuser);
   if (!currentuser) {
     window.location.href = "localhost:3000/login";
   }

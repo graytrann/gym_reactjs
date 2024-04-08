@@ -6,10 +6,10 @@ import FormInput from "../../../../components/FormInput/FormInput";
 import CourseCard from "../Course/CourseCard";
 
 export default function Suggest() {
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  // const [height, setHeight] = useState("");
+  // const [weight, setWeight] = useState("");
   const [courses, setCourses] = useState([]);
-  const [goal, setGoal] = useState("");
+  // const [goal, setGoal] = useState("");
   const [showCourseCard, setShowCourseCard] = useState(false);
   useEffect(() => {
     async function fetchData() {
@@ -28,6 +28,7 @@ export default function Suggest() {
     initialValues: {
       height: "",
       weight: "",
+      goal: "",
     },
     onSubmit: (values) => {
       handleChange(formik.values);
@@ -52,7 +53,6 @@ export default function Suggest() {
       let coursesFromAPI = await Course.suggestCoures(data);
       setCourses(coursesFromAPI);
       setShowCourseCard(true);
-      console.log(coursesFromAPI);
     } catch (error) {
       console.log("Failed");
     }
@@ -72,6 +72,7 @@ export default function Suggest() {
               errors={formik.errors.height}
               touched={formik.touched.height}
               value={formik.values.height}
+              onChange={handleChange}
             />
             <FormInput
               id="weight"
@@ -81,22 +82,33 @@ export default function Suggest() {
               errors={formik.errors.weight}
               touched={formik.touched.weight}
               value={formik.values.weight}
+              onChange={handleChange}
             />
             <h1 className=" mt-5 text-2xl font-semibold">Mục tiêu</h1>
-            <div className="flex justify-center">
-              <input
+            <div className="flex justify-center ">
+              {/* <input
                 type="radio"
                 id="lose_weight"
                 name="goal"
                 value="giảm cân"
                 checked={goal === "giảm cân"}
+                
                 onChange={handleChange}
+                className="me-2 color-blue-500"
+              /> */}
+              <input
+                type="radio"
+                id="lose_weight"
+                name="goal"
+                value="giảm cân"
+                checked={formik.values.goal === "giảm cân"}
+                onChange={formik.handleChange}
                 className="me-2"
               />
               <h1 htmlFor="lose_weight">Giảm cân</h1>
             </div>
             <div className="flex justify-center">
-              <input
+              {/* <input
                 type="radio"
                 id="gain_weight"
                 name="goal"
@@ -104,11 +116,20 @@ export default function Suggest() {
                 checked={goal === "tăng cân"}
                 onChange={handleChange}
                 className="me-2"
+              /> */}
+              <input
+                type="radio"
+                id="gain_weight"
+                name="goal"
+                value="tăng cân"
+                checked={formik.values.goal === "tăng cân"}
+                onChange={formik.handleChange}
+                className="me-2"
               />
               <h1 htmlFor="gain_weight">Tăng cân</h1>
             </div>
             <div className="flex justify-center ml-[11%]">
-              <input
+              {/* <input
                 type="radio"
                 id="maintain_health"
                 name="goal"
@@ -116,6 +137,15 @@ export default function Suggest() {
                 checked={goal === "duy trì sức khỏe"}
                 onChange={handleChange}
                 className="me-2 text-lg"
+              /> */}
+              <input
+                type="radio"
+                id="maintain_weight"
+                name="goal"
+                value="duy trì sức khỏe"
+                checked={formik.values.goal === "duy trì sức khỏe"}
+                onChange={formik.handleChange}
+                className="me-2"
               />
               <h1 htmlFor="maintain_health">Duy trì sức khỏe</h1>
             </div>

@@ -11,8 +11,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { IoFitness } from "react-icons/io5";
+import Swal from "sweetalert2";
+
 const pages = ["TRANG CHỦ", "KHÓA TẬP", "KHUYẾN MÃI", "VỀ CHÚNG TÔI"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
@@ -39,8 +39,13 @@ function ResponsiveAppBar() {
     // Xử lý đăng xuất ở đây
     localStorage.removeItem("gymUser");
     window.location.reload(); // Tải lại trang hiện tại
-
-    console.log("Đã đăng xuất!");
+    Swal.fire({
+      position: "top-center",
+      icon: "success",
+      title: "Đăng xuất thành công",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
@@ -107,7 +112,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },

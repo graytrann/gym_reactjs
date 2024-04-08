@@ -7,6 +7,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import FormInput from "../../../../components/FormInput/FormInput";
+import Swal from "sweetalert2";
+
 export default function SignUp() {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
@@ -44,17 +46,25 @@ export default function SignUp() {
 
   const handleSignUp = async (event) => {
     event.preventDefault();
-    console.log(formik.values);
     const { fullName, phone, password } = formik.values; // Bóc tách phone và password từ formik.values
 
     const user = new User(fullName, phone, password, 1);
     try {
       await user.signUp(); // Gọi phương thức signUp từ class User
-      console.log("Sign up successful!");
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Đăng kí thành công",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       navigate("/login");
     } catch (error) {
-      alert(error.response.data?.error.message);
-      console.error("Đăng ký thất bại:", error.response.data?.error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error.response.data?.error.message}`,
+      });
     }
   };
 
